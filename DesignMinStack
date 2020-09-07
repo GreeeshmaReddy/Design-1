@@ -1,0 +1,40 @@
+//Time : O(1)
+//Space: O(N)
+//Technique : One stack - maintain pair in it
+class MinStack {
+    /** initialize your data structure here. */
+    Stack<int[]> st;
+    public MinStack() {
+        st = new Stack<>();
+    }   
+    public void push(int x) {
+        if(st.empty()){
+            st.push(new int[] {x,x});
+        }
+        else{
+            int[] y = st.peek();
+            st.push(new int[] {x, Math.min(x, y[1])});
+        }       
+    }  
+    public void pop() {
+        st.pop();
+    } 
+    public int top() {
+        int[] y = st.peek();
+        return y[0];
+    }  
+    public int getMin() {
+        int[] y = st.peek();
+        return y[1];
+        
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
